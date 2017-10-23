@@ -7,11 +7,14 @@ def add(numbers_string):
 
     elif numbers_string.startswith("//"):
         result = 0
-        delim = numbers_string[2]
-        numbers_string = numbers_string.split("\n")
-        numbers = numbers_string.split(delim)
+        delim = ""
+        split_newline = numbers_string.split("\n")
+        for char in range(2, len(split_newline[0])):
+            delim = delim + split_newline[0][char]
+        numbers = split_newline[1].split(delim)
         for num in numbers:
-            result += int(num)
+            if int(num) >= 0 and int(num) <= 1000:
+                result += int(num)
         return result
 
     else:
@@ -21,5 +24,6 @@ def add(numbers_string):
             delim = "\n"
         numbers = numbers_string.split(delim)
         for num in numbers:
-            result += int(num)
+            if int(num) >= 0 and int(num) <= 1000:
+                result += int(num)
         return result

@@ -47,7 +47,31 @@ class test_string_calculator(unittest.TestCase):
         """
         self.assertEqual(add("//£\n1£2"), 3)
 
-    
+    def test_negative_numbers(self):
+        """
+        Tests that negatives are ignored
+        """
+        self.assertEqual(add("1, -2"), 1)
+
+    def test_greater_than_1000_ignored(self):
+        """
+        Tests that numbers greater than 1000 are ignored
+        """
+        self.assertEqual(add("1,1001"), 1)
+
+    def test_delimiters_any_length(self):
+        """
+        Tests that delimiters can be any length.
+        """
+        self.assertEqual(add("//---\n1---3---5"), 9)
+
+    def test_multi_delims_any_length(self):
+        """
+        Tests that multiple delimiters of any length can be used as input
+        """
+        self.assertEqual(add("//£$%\n1£$%3£$%5"), 9)
+
+
 
 
 
